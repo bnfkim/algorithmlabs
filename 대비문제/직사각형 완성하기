@@ -1,0 +1,101 @@
+# ****직사각형 완성하기****
+
+## 📍문제
+
+### **문제**
+
+---
+
+직사각형을 좋아하는 유니는 좌표평면 위에 직사각형 하나를 그렸다.
+
+이 직사각형의 각 변은 x축에 평행하거나 y축에 평행하도록 그려졌다.
+
+어느날 직사각형보다 직각삼각형을 좋아하는 지니가 유니의 직사각형의 네 꼭짓점 중 하나를 지워버렸다.
+
+유니가 다시 직사각형을 만들 수 있도록 남아있는 세 꼭짓점의 좌표를 입력하면 지니가 지운 점의 좌표를 알려주는 프로그램을 작성하시오.
+
+### **입력**
+
+---
+
+첫째 줄에 테스트케이스의 수 T가 주어진다..
+
+각 테스트케이스의 첫 줄에 x1, y1, x2, y2, x3, y3가 공백으로 구분되어 주어진다. 이는 남은 세 점의 좌표가 각각 (x1, y1), (x2, y2), (x3, y3)임을 의미한다. 모든 점의 좌표는 1 이상 1,000,000 이하의 자연수다.
+
+( 1 ≤ T ≤ 10 )
+
+### **출력**
+
+---
+
+각 테스트케이스마다 '#'과 테스트케이스의 번호, 공백을 출력한 뒤 지니가 지운 점의 x좌표와 y좌표를 공백으로 구분하여 출력한다.
+
+### **예제 입력**
+
+```
+10
+20 6 3 3 3 6
+18 21 18 29 8 29
+20 6 11 9 20 6
+23 23 23 26 6 26
+14 14 14 14 9 17
+27 1 17 1 17 23
+27 1 7 1 7 17
+6 25 6 14 28 25
+9 9 12 9 9 17
+17 27 19 5 19 27
+
+```
+
+### **예제 출력**
+
+```
+#1 20 3
+#2 8 21
+#3 11 9
+#4 6 23
+#5 9 17
+#6 27 23
+#7 27 17
+#8 28 14
+#9 12 17
+#10 17 5
+```
+
+## 📍코드
+
+```java
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+
+        // Please Enter Your Code Here
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        
+        for(int k=1; k<=T; k++) {
+            int x = 0;
+            int y = 0;
+
+            ArrayList<Integer> listX = new ArrayList<>();
+            ArrayList<Integer> listY = new ArrayList<>();
+
+            for(int i=0; i<3; i++){
+                listX.add(sc.nextInt());
+                listY.add(sc.nextInt());
+            }
+            for(int i=0; i<3; i++){
+                if( Collections.frequency(listX, listX.get(i)) == 1) x = listX.get(i);
+                if( Collections.frequency(listY, listY.get(i)) == 1) y = listY.get(i);
+            }
+            System.out.println("#" + k + " " + x + " " + y);
+        }
+    }
+}
+```
+
+## 📍기록
+
+- Collections.frequency( list, “원소”)
+    - list 원소 갯수를 반환해주는 Collection method
+    - arr 일 경우 → `Arrays.asList()` 를 통해 list로 바꿔준 후 사용
